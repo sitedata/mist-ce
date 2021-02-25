@@ -544,8 +544,8 @@ deployment:
         memory: 200Mi
         cpu: 20m
       limits:
-        memory: 400Mi
-        cpu: 300m
+        memory: 800Mi
+        cpu: 1000m
 
   # Sockjs deployment settings.
   sockjs:
