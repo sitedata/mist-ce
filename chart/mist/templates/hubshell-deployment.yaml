@@ -35,7 +35,7 @@ spec:
             cpu: 10m
           limits:
             memory: 240Mi
-            cpu: 250m
+            cpu: 500m
         volumeMounts:
         - name: {{ .Values.productShortName }}-config
           mountPath: /etc/{{ .Values.productShortName }}/settings/settings.py

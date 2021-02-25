@@ -557,7 +557,7 @@ deployment:
         cpu: 15m
       limits:
         memory: 300Mi
-        cpu: 500m
+        cpu: 1200m
 
   # UI deployment settings.
   ui:
@@ -581,7 +581,7 @@ deployment:
         cpu: 20m
       limits:
         memory: 60Mi
-        cpu: 70m
+        cpu: 500m
 
   # Landing deployment settings.
   landing:
@@ -593,4 +593,4 @@ deployment:
         cpu: 10m
       limits:
         memory: 250Mi
-        cpu: 100m
+        cpu: 200m

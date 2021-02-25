@@ -34,7 +34,7 @@ spec:
             cpu: 30m
           limits:
             memory: 250Mi
-            cpu: 210m
+            cpu: 500m
         volumeMounts:
         - name: influxdb-config
           mountPath: /etc/influxdb/influxdb.conf
