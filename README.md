@@ -158,9 +158,34 @@ shortlived container elasticsearch-manage.
 
 ### Kubernetes cluster
 
-Use the available helm chart within the chart directory.
+Add the mist chart repository
+```
+helm repo add mist https://dl.mist.io/charts
+```
+Update chart repositories
+```
+helm repo update
+```
+List all the available charts
+```
+helm search repo mist
+```
+Export default values for mist-ce chart (Optional)
+```
+helm show values  mist/mist-ce > values.yaml
+```
+To install mist you need to set the host and tls secret either in the values file
+or set them through the command line
 
-
+Install mist-ce without `values.yaml`
+```
+helm install [NAME] mist/mist-ce --set http.host=foo.bar.com --set http.tlsSecret=tlsName [-n NAMESPACE]
+```
+Install mist-ce with `values.yaml`
+```
+helm install [NAME] mist/mist-ce -f values.yaml [-n NAMESPACE]
+```
+Note: You can also add a tlsClusterIssuer by overriding the `http.tlsClusterIssuer`
 
 ## Running Mist
 
