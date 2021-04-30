@@ -157,35 +157,37 @@ shortlived container elasticsearch-manage.
 
 
 ### Kubernetes cluster
-
-Add the mist chart repository
+Add the mist chart repository and fetch available charts
 ```
 helm repo add mist https://dl.mist.io/charts
-```
-Update chart repositories
-```
 helm repo update
 ```
-List all the available charts
-```
-helm search repo mist
-```
-Export default values for mist-ce chart (Optional)
-```
-helm show values  mist/mist-ce > values.yaml
-```
-To install mist you need to set the host and tls secret either in the values file
-or set them through the command line
 
-Install mist-ce without `values.yaml`
+To install Mist you need to configure the hostname
 ```
-helm install [NAME] mist/mist-ce --set http.host=foo.bar.com --set http.tlsSecret=tlsName [-n NAMESPACE]
+helm install mist-ce mist/mist-ce --set http.host=foo.bar.com
 ```
-Install mist-ce with `values.yaml`
+#### TLS configuration
+If you have configured a TLS certificate for this hostname as a k8s secret you can configure it using the http.tlsSecret option
 ```
-helm install [NAME] mist/mist-ce -f values.yaml [-n NAMESPACE]
+helm install mist-ce mist/mist-ce --set http.host=foo.bar.com --set http.tlsSecret=secretName
 ```
-Note: You can also add a tlsClusterIssuer by overriding the `http.tlsClusterIssuer`
+If you want to issue a new certificate, also configure the cluster issuer that will be used
+```
+helm install mist-ce mist/mist-ce --set http.host=foo.bar.com  --http.tlsClusterIssuer=letsencrypt-prod --set http.tlsSecret=secretName
+```
+
+#### Customizing
+In order to easily customize all available options:
+1. export default chart values
+```
+helm show values mist/mist-ce > values.yaml
+```
+2. Edit values.yaml according to your needs
+3. install using
+```
+helm install mist-ce mist/mist-ce -f values.yaml
+```
 
 ## Running Mist
 
